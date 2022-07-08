@@ -6,6 +6,7 @@
         <table class="table table-dark table-hover">
             <thead class="text-center">
                 <tr>
+                    <th scope="col">Foto</th>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Email</th>
@@ -17,6 +18,13 @@
             <tbody class="text-center">
 
                 <tr>
+
+                    @if($user->image)
+                    <th><img src=" {{ asset('storage/'.$user->image) }} " width="50px" height="50px" class="rounded-circle"></th>
+                    @else
+                    <th><img src=" {{ asset('storage/profile/avatar.jpg') }} " width="50px" height="50px" class="rounded-circle"></th>
+                    @endif
+
                     <th scope="row"> {{ $user->id }} </th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
