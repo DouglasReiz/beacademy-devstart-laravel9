@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUpdateUserFormRequest;
+use App\Models\Team;
 
 class UserController extends Controller
 {
@@ -23,11 +24,10 @@ class UserController extends Controller
 
     public function show($id)
     {
-         if(!$user = User::find($id))
+        if(!$user = User::find($id))
             return redirect() ->route('users.index');
-
-        $title = 'Usuário '. $user->name;
         
+        $title = 'Usuário '. $user->name;
         return view('users.show', compact('user','title'));
     }
 
