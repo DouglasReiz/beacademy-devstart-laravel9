@@ -3,6 +3,24 @@
 @section('body')
         <h1>Listagem de Usuários</h1>
         
+        @if(session()->has('create'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Bem-Vindo!</strong> {{ session()->get('create') }}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        @if(session()->has('edit'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Bem-Vindo!</strong>  {{ session()->get('edit') }}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        @if(session()->has('edit'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Bem-Vindo!</strong>  {{ session()->get('edit') }}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
 
         <div class="container">
             <div class="row">
@@ -49,7 +67,7 @@
                     <td>
                         <a href="{{ route('posts.show', $user->id)}}" class="btn btn-outline-dark text-white">Postagens - {{$user->posts->count()}}</a>
                     </td>
-                    <td>{{ date('d/m/y - H:i', strtotime($user->created_at)) }}</td>
+                    <td>{{ formatDateTime($user->created_at)) }}</td>
                     <td><a href="{{ route('users.show', $user->id)}}" class="btn btn-primary text-white">Vizualizar</a></td>
                 </tr>
                 @endforeach
